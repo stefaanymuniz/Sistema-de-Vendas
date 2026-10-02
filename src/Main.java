@@ -10,42 +10,47 @@ public class Main {
     
     public static void main(String[] args) {
 
-        ItemPedido item1 = new ItemPedido();
-        item1.descricao = "Teclado";
-        item1.precoUnitario = 150.0;
-        item1.quantidade = 3;
+        // Incremento A
+        ItemPedido itemPrincipal = new ItemPedido();
+        itemPrincipal.descricao = "Teclado";
+        itemPrincipal.precoUnitario = 150.0;
+        itemPrincipal.quantidade = 2;
+        double subtotal = itemPrincipal.calcularSubtotal();
         
-        ItemPedido item2 = new ItemPedido();
-        item2.descricao = "Mouse";
-        item2.precoUnitario = 80.0;
-        item2.quantidade = 3;
+        mostrarInfo(itemPrincipal.descricao, itemPrincipal.quantidade, itemPrincipal.precoUnitario, subtotal);
+        
+        // Incremento B
+        ItemPedido itemObservado = itemPrincipal;
+        double subtotal2 = itemObservado.calcularSubtotal();
+        System.out.println(itemObservado == itemPrincipal);
+        
+        // Incremento C
+        itemObservado.aumentarQuantidade(3);
+        System.out.println(itemPrincipal.quantidade);
+        System.out.println(itemObservado.quantidade);
+        // atualizando os subtotais
+        subtotal = itemPrincipal.calcularSubtotal();
+        subtotal2 = itemObservado.calcularSubtotal();
+        
+        // Incremento E
+        ItemPedido itemIndependente = new ItemPedido();
+        itemIndependente.descricao = "Teclado";
+        itemIndependente.precoUnitario = 150.0;
+        itemIndependente.quantidade = 5;
+        double subtotal3 = itemIndependente.calcularSubtotal();
 
-        double subtotal = item1.calcularSubtotal();
-        double subtotal2 = item2.calcularSubtotal();
-        
-        double totalCompra = subtotal + subtotal2;
-        
-        mostrarInfo(item1.descricao, item1.quantidade, item1.precoUnitario, subtotal);
-        mostrarInfo(item2.descricao, item2.quantidade, item2.precoUnitario, subtotal2);
-        
-        // Incremento E — Alterar o estado por meio de um comportamento
-        item1.aumentarQuantidade(2);
-        subtotal = item1.calcularSubtotal();
-        totalCompra = subtotal + subtotal2;
-        
-        System.out.println("** Quantidade do produto " + item1.descricao + " alterada: **");
-        mostrarInfo(item1.descricao, item1.quantidade, item1.precoUnitario, subtotal);
-        
-        // Aplicando o desconto percentual
-        subtotal = item1.calcularSubtotalComDesconto(0.10);
-        subtotal2 = item2.calcularSubtotalComDesconto(0.25);
-        double totalCompraDesconto = subtotal + subtotal2;
+        System.out.println(itemObservado == itemPrincipal); // true -> referenciam o msm objeto
+        System.out.println(itemPrincipal == itemIndependente); // false -> referenciam objetos diferentes
 
-        System.out.println("Aplicando os descontos: ");
-        mostrarInfo(item1.descricao, item1.quantidade, item1.precoUnitario, subtotal);
-        mostrarInfo(item2.descricao, item2.quantidade, item2.precoUnitario, subtotal2);
+        /* "por que estado equivalente não torna itemIndependente o mesmo objeto que itemPrincipal" -> pois cada objeto possui sua identidade, o que os diferenciam uns dos outros */
+        
 
-        System.out.println("Total da compra realizada: R$" + totalCompraDesconto);
-        System.out.print("Desconto da compra: R$" + (totalCompra - totalCompraDesconto));
+        // Incremento F
+        itemIndependente.aumentarQuantidade(2);
+        subtotal3 = itemIndependente.calcularSubtotal();
+        System.out.println("Exibir as três quantidades e os três subtotais:");
+        System.out.println(itemPrincipal.quantidade + " " + subtotal);
+        System.out.println(itemObservado.quantidade + " " + subtotal2);
+        System.out.println(itemIndependente.quantidade + " " + subtotal3);
     }
 }
