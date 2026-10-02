@@ -23,6 +23,37 @@ public class Pedido {
         }
     }
 
+    // Incremento B
+    public void removerItem(Produto produto) {
+    if (!fechado) {
+        for (int indice = 0; indice < itens.size(); indice++) {
+            ItemPedido item = itens.get(indice);
+
+            if (item.representa(produto)) {
+                itens.remove(indice);
+                return;
+                }
+            }
+        }
+    }
+
+    public void alterarQuantidade(Produto produto, int novaQuantidade) {
+    if (!fechado) {
+        for (int indice = 0; indice < itens.size(); indice++) {
+            ItemPedido item = itens.get(indice);
+
+            if (item.representa(produto)) {
+                if (novaQuantidade == 0) {
+                    itens.remove(indice);
+                } else {
+                    item.alterarQuantidade(novaQuantidade);
+                }
+                return;
+                }
+            }
+        }
+    }
+
     public double calcularTotal() {
         double total = 0.0;
 

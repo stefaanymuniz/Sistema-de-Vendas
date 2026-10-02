@@ -12,12 +12,24 @@ public class ItemPedido {
         }
     }
 
+    // Incremento A
+    public boolean representa(Produto produto) {
+        return this.produto == produto;
+    } 
+
     double calcularSubtotal() {
         return produto.getPreco() * quantidade;
     }
 
     double calcularSubtotalComDesconto(double percentual) {
         return calcularSubtotal() * (1 - percentual);
+    }
+
+    // Incremento C
+    public void alterarQuantidade(int novaQuantidade) {
+    if (novaQuantidade > 0) {
+        quantidade = novaQuantidade;
+        }
     }
 
     void aumentarQuantidade(int unidades) {

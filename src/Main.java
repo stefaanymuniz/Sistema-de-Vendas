@@ -5,24 +5,29 @@ public class Main {
         Produto teclado = new Produto("Teclado", 150.0);
         Produto mouse = new Produto("Mouse", 80.0);
 
-        Pedido primeiro = new Pedido();
-        primeiro.adicionarItem(teclado, 2);
-        primeiro.fechar();
-        primeiro.adicionarItem(mouse, 1);
-        System.out.println(primeiro.calcularTotal());
+        Pedido pedido = new Pedido();
+        pedido.adicionarItem(teclado, 2);
+        pedido.adicionarItem(mouse, 1);
 
-        Pedido segundo = new Pedido();
-        segundo.adicionarItem(mouse, 1);
-        System.out.println(segundo.calcularTotal());
+        System.out.println(pedido.calcularTotal());
+        
+        pedido.alterarQuantidade(teclado, 3);
+        System.out.println(pedido.calcularTotal());
+        pedido.alterarQuantidade(mouse, 0);
+        System.out.println(pedido.calcularTotal());
+        pedido.alterarQuantidade(teclado, -1);
+        System.out.println(pedido.calcularTotal());
 
-        // Desafio
+        Pedido fechado = new Pedido();
+        fechado.adicionarItem(teclado, 2);
+        fechado.adicionarItem(mouse, 1);
+        fechado.fechar();
 
-        Pedido terceiro = new Pedido();
-        terceiro.adicionarItem(teclado, 2);
-        terceiro.adicionarItem(mouse, 1);
-        terceiro.fechar();
-        terceiro.adicionarItem(mouse, 1);
-        System.out.println(terceiro.calcularTotal());
+        fechado.removerItem(mouse);
+        fechado.alterarQuantidade(teclado, 3);
+        fechado.adicionarItem(mouse, 2);
+
+        System.out.println(fechado.calcularTotal());
     }
 }
 
