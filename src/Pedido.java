@@ -5,14 +5,22 @@ import java.util.List;
 
 public class Pedido {
     private List<ItemPedido> itens;
+    private boolean fechado;
 
     public Pedido() {
         itens = new ArrayList<>();
+        fechado = false;
     }
 
-    public void adicionarItem(Produto produto, int quantidade) { // atribuir a responsabilidade de criar o objeto ItemPedido ao método de Pedido; o que faz sentido, já que só se pode ter quantidades de um item se adicioná-lo à um pedido
-        ItemPedido item = new ItemPedido(produto, quantidade);
-        itens.add(item);
+    public void fechar() {
+        fechado = true;
+    }
+
+    public void adicionarItem(Produto produto, int quantidade) { 
+        if (!fechado) {
+            ItemPedido item = new ItemPedido(produto, quantidade);
+            itens.add(item);
+        }
     }
 
     public double calcularTotal() {
