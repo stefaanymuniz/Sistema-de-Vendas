@@ -10,10 +10,7 @@ public class Main {
     
     public static void main(String[] args) {
 
-        ItemPedido itemPrincipal = new ItemPedido();
-        itemPrincipal.descricao = "Teclado";
-        itemPrincipal.precoUnitario = 150.0;
-        itemPrincipal.aumentarQuantidade(5); // escrita
+        ItemPedido itemPrincipal = new ItemPedido("Teclado", 150.0, 5);
         
         ItemPedido itemObservado = itemPrincipal;
         
@@ -22,8 +19,8 @@ public class Main {
         System.out.println("Quantidade do principal: " + itemPrincipal.getQuantidade());
         System.out.println("Quantidade do observado: " + itemObservado.getQuantidade() + "\n");
         
-        System.out.println("Preço unitário principal: " + itemPrincipal.precoUnitario);
-        System.out.println("Preço unitário observado: " + itemObservado.precoUnitario + "\n");
+        System.out.println("Preço unitário principal: " + itemPrincipal.getPrecoUnitario());
+        System.out.println("Preço unitário observado: " + itemObservado.getPrecoUnitario() + "\n");
         
         System.out.println("Subtotal principal: " + itemPrincipal.calcularSubtotal());
         System.out.println("Subtotal observado: " + itemObservado.calcularSubtotal() + "\n");
@@ -45,8 +42,7 @@ public class Main {
         
         System.out.println(itemObservado == itemPrincipal); 
         
-        ItemPedido itemIndependente = new ItemPedido();
-        itemIndependente.aumentarQuantidade(5);
+        ItemPedido itemIndependente = new ItemPedido("Mouse", 50.0, 5);
         
         System.out.println("Quantidade do principal: " + itemPrincipal.getQuantidade());
         System.out.println("Quantidade do independente: " + itemIndependente.getQuantidade());

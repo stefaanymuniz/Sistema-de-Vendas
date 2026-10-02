@@ -1,9 +1,37 @@
 
 public class ItemPedido {
 
-    String descricao;
-    double precoUnitario;
+    private String descricao;
+    private double precoUnitario;
     private int quantidade;
+
+    // Incremento A - Construtor
+    public ItemPedido(String descricao,
+                      double precoUnitario, 
+                      int quantidade) {
+                        
+        this.descricao = descricao;
+
+        if (precoUnitario >= 0) {
+            this.precoUnitario = precoUnitario;
+        }
+
+        if (quantidade >= 0) {
+            this.quantidade = quantidade;
+        }
+    }
+    
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public double getPrecoUnitario() {
+        return precoUnitario;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
 
     double calcularSubtotal() {
         return precoUnitario * quantidade;
@@ -25,7 +53,5 @@ public class ItemPedido {
         }
     }
     
-    public int getQuantidade() {
-        return quantidade;
-    }
+
 }
