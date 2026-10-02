@@ -12,14 +12,6 @@ public class ItemPedido {
         }
     }
 
-    public Produto getProduto() {
-        return produto;
-    }
-    
-    public int getQuantidade() {
-        return quantidade;
-    }
-
     double calcularSubtotal() {
         return produto.getPreco() * quantidade;
     }
@@ -39,6 +31,5 @@ public class ItemPedido {
             quantidade -= unidades;
         }
     }
-    
 
 }

@@ -10,7 +10,8 @@ public class Pedido {
         itens = new ArrayList<>();
     }
 
-    public void adicionarItem(ItemPedido item) {
+    public void adicionarItem(Produto produto, int quantidade) { // atribuir a responsabilidade de criar o objeto ItemPedido ao método de Pedido; o que faz sentido, já que só se pode ter quantidades de um item se adicioná-lo à um pedido
+        ItemPedido item = new ItemPedido(produto, quantidade);
         itens.add(item);
     }
 
