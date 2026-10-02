@@ -10,47 +10,36 @@ public class Main {
     
     public static void main(String[] args) {
 
-        ItemPedido itemPrincipal = new ItemPedido("Teclado", 150.0, 5);
+        Produto teclado = new Produto("Teclado", 150.0);
         
+        ItemPedido itemPrincipal = new ItemPedido(teclado, 2);
         ItemPedido itemObservado = itemPrincipal;
+        ItemPedido itemIndependente = new ItemPedido(teclado, 1);
         
-        System.out.println(itemObservado == itemPrincipal); // true -> referenciam o msm objeto
+        System.out.println("Subtotal itemPrincipal: " + itemPrincipal.calcularSubtotal());
+        System.out.println("Subtotal itemIndependente: " + itemIndependente.calcularSubtotal());
+        System.out.println(itemPrincipal == itemObservado); // true -> referenciam o msm objeto
+        System.out.println(itemPrincipal == itemIndependente); //false
+        System.out.println(teclado == itemPrincipal.getProduto()); // true -> referenciam o mesmo endereço de memória
+        System.out.println(itemPrincipal.getProduto() == itemIndependente.getProduto()); // true -> a variável "produto" de ambos referenciam o mesmo espaço na memória reservado pela classe Produto
         
-        System.out.println("Quantidade do principal: " + itemPrincipal.getQuantidade());
-        System.out.println("Quantidade do observado: " + itemObservado.getQuantidade() + "\n");
-        
-        System.out.println("Preço unitário principal: " + itemPrincipal.getPrecoUnitario());
-        System.out.println("Preço unitário observado: " + itemObservado.getPrecoUnitario() + "\n");
-        
-        System.out.println("Subtotal principal: " + itemPrincipal.calcularSubtotal());
-        System.out.println("Subtotal observado: " + itemObservado.calcularSubtotal() + "\n");
-        
-        itemObservado.aumentarQuantidade(-10);
-        
-        
-        System.out.println("Quantidade do principal: " + itemPrincipal.getQuantidade());
-        System.out.println("Quantidade do observado: " + itemObservado.getQuantidade());
-        System.out.println("Subtotal principal: " + itemPrincipal.calcularSubtotal());
-        System.out.println("Subtotal observado: " + itemObservado.calcularSubtotal() + "\n");
-        
-        itemObservado.aumentarQuantidade(2);
-        
-        System.out.println("Quantidade do principal: " + itemPrincipal.getQuantidade());
-        System.out.println("Quantidade do observado: " + itemObservado.getQuantidade());
-        System.out.println("Subtotal principal: " + itemPrincipal.calcularSubtotal());
-        System.out.println("Subtotal observado: " + itemObservado.calcularSubtotal() + "\n");
-        
-        System.out.println(itemObservado == itemPrincipal); 
-        
-        ItemPedido itemIndependente = new ItemPedido("Mouse", 50.0, 5);
-        
-        System.out.println("Quantidade do principal: " + itemPrincipal.getQuantidade());
-        System.out.println("Quantidade do independente: " + itemIndependente.getQuantidade());
-        System.out.println(itemPrincipal == itemIndependente);
-        
-        // Desafio: reduzindo a quantidade
-        itemIndependente.reduzirQuantidade(2);
-        System.out.println("Quant. do independente após redução: " + itemIndependente.getQuantidade());
+        Produto outroTeclado = new Produto("Teclado", 150.0);
+        ItemPedido itemOutroProduto = new ItemPedido(outroTeclado, 2);
+
+        System.out.println(teclado == outroTeclado);
+        System.out.println(itemPrincipal.getProduto() == itemOutroProduto.getProduto()); // false -> são objetos diferentes criados pela classe Produto
+        System.out.println(itemOutroProduto.calcularSubtotal());
+
+        // Desafio
+        Produto mouse = new Produto("Mouse", 80.0);
+        ItemPedido item1 = new ItemPedido(mouse, 1);
+        ItemPedido item2 = new ItemPedido(mouse, 3);
+
+        System.out.println("----- Desafio -----");
+        System.out.println(item1.getProduto() == item2.getProduto()); // true
+        System.out.println(item1.calcularSubtotal());
+        System.out.println(item2.calcularSubtotal());
+
     }
 }
 

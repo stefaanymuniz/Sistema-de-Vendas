@@ -1,40 +1,27 @@
 
 public class ItemPedido {
 
-    private String descricao;
-    private double precoUnitario;
+    private Produto produto;
     private int quantidade;
 
-    // Incremento A - Construtor
-    public ItemPedido(String descricao,
-                      double precoUnitario, 
-                      int quantidade) {
-                        
-        this.descricao = descricao;
-
-        if (precoUnitario >= 0) {
-            this.precoUnitario = precoUnitario;
-        }
+    public ItemPedido(Produto produto, int quantidade) {    
+        this.produto = produto;
 
         if (quantidade >= 0) {
             this.quantidade = quantidade;
         }
     }
+
+    public Produto getProduto() {
+        return produto;
+    }
     
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public double getPrecoUnitario() {
-        return precoUnitario;
-    }
-
     public int getQuantidade() {
         return quantidade;
     }
 
     double calcularSubtotal() {
-        return precoUnitario * quantidade;
+        return produto.getPreco() * quantidade;
     }
 
     double calcularSubtotalComDesconto(double percentual) {
